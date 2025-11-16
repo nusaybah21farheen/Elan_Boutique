@@ -1,18 +1,17 @@
-/* ---------- Simple Cart Storage ---------- */
+
 let cart = [];
 
-/* Get cart items */
+
 function getCart() {
   return cart;
 }
 
-/* Save cart items */
 function saveCart(newCart) {
   cart = newCart;
   updateCartCount();
 }
 
-/* Update cart item count in header */
+
 function updateCartCount() {
   const countEl = document.getElementById('cartCount');
   if (!countEl) return;
@@ -20,13 +19,13 @@ function updateCartCount() {
   countEl.textContent = totalQty;
 }
 
-/* ---------- 1) JavaScript Object + Add to Cart Event ---------- */
+
 function initProductButtons() {
   document.querySelectorAll('.product .add-to-cart').forEach(btn => {
     btn.addEventListener('click', e => {
       const card = e.target.closest('.product');
 
-      // JavaScript object requirement
+      // JavaScript object 
       const product = {
         id: card.dataset.id,
         name: card.dataset.name,
@@ -36,7 +35,7 @@ function initProductButtons() {
 
       addToCart(product);
 
-      // Feedback text
+      
       e.target.textContent = 'Added ✓';
       setTimeout(() => (e.target.textContent = 'Add to Cart'), 1200);
     });
@@ -56,7 +55,6 @@ function addToCart(product) {
 }
 
 
-/* ---------- 3) Dynamic HTML Creation ---------- */
 function renderCart() {
   const container = document.getElementById('cartContainer');
   if (!container) return;
@@ -78,10 +76,11 @@ let rows = cartItems.map(it => `
   `).join('');
 }
 
-/* ---------- Initialize on Page Load ---------- */
+
 document.addEventListener('DOMContentLoaded', () => {
   updateCartCount();
   initProductButtons();
   renderCart();
 });
+
 
